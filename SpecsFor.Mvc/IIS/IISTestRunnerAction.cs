@@ -52,7 +52,7 @@ namespace SpecsFor.Mvc.IIS
 			var arguments = "/p:" + string.Join(";", properties.Select(kvp => kvp.Key + "=" + kvp.Value)) + " \"" + ProjectPath + "\"";
 
 			var msBuildPath = MSBuildOverride ??
-			                  ToolLocationHelper.GetPathToBuildToolsFile("msbuild.exe", ToolLocationHelper.CurrentToolsVersion);
+			                  ToolLocationHelper.GetPathToDotNetFrameworkFile("msbuild.exe", TargetDotNetFrameworkVersion.VersionLatest);
 
 			var msBuildProc = new Process();
 			msBuildProc.StartInfo = new ProcessStartInfo

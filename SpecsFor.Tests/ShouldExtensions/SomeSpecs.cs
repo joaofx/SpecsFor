@@ -72,19 +72,22 @@ namespace SpecsFor.Tests.ShouldExtensions
 			public void then_it_does_not_throw_if_the_value_is_within_the_tolerance()
 			{
 				var obj = new TestObject { DateTimeValue = DateTime.Today };
-				Assert.DoesNotThrow(() =>
-					obj.ShouldLookLike(() => new TestObject
-					{
-						DateTimeValue = Some.DateTimeNear(DateTime.Now)
-					})
-					);
-				Assert.DoesNotThrow(() =>
-					obj.ShouldLookLike(() => new TestObject
-					{
-						DateTimeValue = Some.DateTimeNear(DateTime.Today.AddSeconds(-5), TimeSpan.FromSeconds(5))
-					})
-					);
-			}
+
+                // It was should does not throw before, but default tolerance is 1 second??
+                Assert.Throws<EqualException>(() =>
+                    obj.ShouldLookLike(() => new TestObject
+                    {
+                        DateTimeValue = Some.DateTimeNear(DateTime.Now)
+                    })
+                );
+
+                Assert.DoesNotThrow(() =>
+                    obj.ShouldLookLike(() => new TestObject
+                    {
+                        DateTimeValue = Some.DateTimeNear(DateTime.Today.AddSeconds(-5), TimeSpan.FromSeconds(5))
+                    })
+                );
+            }
 
 			[Test]
 			public void then_it_throws_if_the_value_is_outside_the_tolerance()

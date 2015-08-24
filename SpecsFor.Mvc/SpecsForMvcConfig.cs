@@ -25,7 +25,7 @@ namespace SpecsFor.Mvc
 		private void AssertEnvironemntValid()
 		{
 			//Make sure the MS Build tools are installed
-			var msbuildExe = @"MSBuild\12.0\bin\msbuild.exe";
+			var msbuildExe = @"MSBuild\14.0\bin\msbuild.exe";
 			if (!File.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86), msbuildExe)) &&
 				!File.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles), msbuildExe)))
 			{
